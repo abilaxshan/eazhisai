@@ -1,177 +1,144 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
-const navVariants = {
-  hidden: { y: -100, opacity: 0 },
-  visible: { 
-    y: 0, 
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 80,
-      damping: 20,
-      staggerChildren: 0.1
-    }
-  }
-};
+const navLinks = [
+  { path: "/", label: "முகப்புப் பக்கம்" },
+  { path: "/about", label: "பற்றி" },
+  { path: "/courses", label: "படிப்புகள்" },
+  { path: "/events", label: "நிகழ்வுகள்" },
+  { path: "/contact", label: "தொடர்பு" },
+];
 
-const linkVariants = {
-  hidden: { y: -20, opacity: 0 },
-  visible: { 
-    y: 0, 
-    opacity: 1,
-    transition: { type: "spring", stiffness: 100 }
-  }
-};
-
-export default function NavBar(){
+const NavBar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <motion.nav 
-      className="bg-white shadow-sm"
-      initial="hidden"
-      animate="visible"
-      variants={navVariants}
+    <motion.nav
+      className="fixed top-[40px] md:top-[48px] left-0 w-full z-50 backdrop-blur-md bg-white/70 shadow-sm border-b border-gray-200"
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 80, damping: 20 }}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <motion.div 
-            initial={{ x: -20, opacity: 0 }} 
-            animate={{ x: 0, opacity: 1 }} 
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }} 
-            className="text-2xl font-extrabold"
-          >
-            <motion.span 
-              animate={{ y: [0, -4, 0] }} 
-              transition={{ 
-                repeat: Infinity, 
-                duration: 4, 
-                ease: 'easeInOut', 
-                delay: 0.8 
-              }}
+        {/* Logo */}
+        <motion.div
+          className="text-2xl font-extrabold text-gray-800 select-none"
+          animate={{ scale: [1, 1.05, 1], y: [0, -2, 0] }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        >
+          ஏழிசை
+        </motion.div>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center space-x-6 text-gray-700">
+          {navLinks.map((link, index) => (
+            <motion.div
+              key={link.path}
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
-              ஏழிசை
-            </motion.span>
-          </motion.div>
-
-          <motion.div className="hidden md:flex items-center space-x-4 text-gray-700">
-            {['/', '/about', '/courses', '/events', '/contact'].map((path, index) => (
-              <motion.div
-                key={path}
-                variants={linkVariants}
-                whileHover={{ y: -2, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <Link
+                to={link.path}
+                className="hover:text-primary transition-colors duration-200"
               >
-                <Link 
-                  to={path} 
-                  className="hover:text-primary transition-colors duration-200"
-                >
-                  {path === '/' ? 'முகப்புப் பக்கம்' :
-                   path === '/about' ? 'பற்றி' :
-                   path === '/courses' ? 'படிப்புகள்' :
-                   path === '/events' ? 'நிகழ்வுகள்' : 'தொடர்பு'}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+                {link.label}
+              </Link>
+            </motion.div>
+          ))}
+
+          <Link
+            to="/events"
+            className="border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all duration-300"
+          >
+            நிகழ்வுகள்
+          </Link>
+
+          <Link
+            to="/contact"
+            className="bg-gradient-to-r from-primary to-teal-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition-all duration-300"
+          >
+            இப்போது விண்ணப்பிக்கவும்
+          </Link>
         </div>
 
-        <div className="flex items-center space-x-3">
-          <Link to="/events" className="hidden md:inline-block px-4 py-2 border border-primary text-primary rounded">நிகழ்வுகள்</Link>
-          <Link to="/contact" className="hidden md:inline-block bg-primary text-white px-4 py-2 rounded">இப்போது விண்ணப்பிக்கவும்</Link>
-
-          {/* mobile menu button */}
-          <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded bg-gray-100">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-            </svg>
-          </button>
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                open
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
       </div>
 
-      {/* mobile menu */}
+      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {open && (
-          <motion.div 
-            className="md:hidden bg-white border-t"
+          <motion.div
+            className="md:hidden bg-white/90 backdrop-blur-md border-t shadow-md"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            transition={{ duration: 0.25 }}
           >
-            <motion.div 
-              className="px-4 py-3 space-y-2"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { 
-                  opacity: 1,
-                  transition: { staggerChildren: 0.07 }
-                }
-              }}
-              initial="hidden"
-              animate="visible"
-            >
-              {[
-                { path: "/", text: "முகப்புப் பக்கம்" },
-                { path: "/about", text: "பற்றி" },
-                { path: "/courses", text: "படிப்புகள்" },
-                { path: "/events", text: "நிகழ்வுகள்" },
-                { path: "/contact", text: "தொடர்பு" }
-              ].map((item, index) => (
+            <div className="flex flex-col items-center py-3 space-y-3 text-gray-800 text-base">
+              {navLinks.map((link) => (
                 <motion.div
-                  key={item.path}
-                  variants={{
-                    hidden: { x: -20, opacity: 0 },
-                    visible: { x: 0, opacity: 1 }
-                  }}
+                  key={link.path}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 100 }}
                 >
-                  <Link 
-                    to={item.path} 
-                    onClick={() => setOpen(false)} 
-                    className="block transition-colors duration-200 hover:text-primary"
+                  <Link
+                    to={link.path}
+                    onClick={() => setOpen(false)}
+                    className="block w-full text-center py-2 hover:text-primary transition-colors duration-200"
                   >
-                    {item.text}
+                    {link.label}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div 
-                className="pt-2"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 }
-                }}
+
+              <div className="w-4/5 border-t border-gray-200 my-2"></div>
+
+              <Link
+                to="/events"
+                onClick={() => setOpen(false)}
+                className="block w-4/5 text-center border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all duration-200"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link 
-                    to="/contact" 
-                    onClick={() => setOpen(false)} 
-                    className="block mb-2 bg-primary text-white text-center px-4 py-2 rounded transition-transform duration-200"
-                  >
-                    இப்போது விண்ணப்பிக்கவும்
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link 
-                    to="/events" 
-                    onClick={() => setOpen(false)} 
-                    className="block text-center border border-primary text-primary px-4 py-2 rounded transition-transform duration-200"
-                  >
-                    நிகழ்வுகள்
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                நிகழ்வுகள்
+              </Link>
+
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="block w-4/5 text-center bg-gradient-to-r from-primary to-teal-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition-all duration-200"
+              >
+                இப்போது விண்ணப்பிக்கவும்
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
   );
-}
+};
+
+export default NavBar;

@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-10">
           {/* Column 1 - Logo / About */}
           <div>
-            <h2 className="text-2xl font-bold mb-3">ஈழிசை</h2>
+            <h2 className="text-2xl font-bold mb-3">ஏழிசை</h2>
             <p className="text-gray-400 leading-relaxed">
               பாரம்பரிய இசையின் அழகை வளர்த்தெடுக்கும் ஈழிசை — 
               தமிழ் இசைப் பண்பாட்டை புதிய தலைமுறையுடன் இணைக்கும் ஒரு முயற்சி.

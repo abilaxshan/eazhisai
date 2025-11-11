@@ -1,26 +1,26 @@
 import React from 'react';
 import TeamCard from './TeamCard';
-import teacher1 from '../assets/team/teacher playing veena.png';
+import teacher1 from '../assets/team/whitekalyan.jpeg';
 import teacher2 from '../assets/team/teacher playing violin.png';
-import teacher3 from '../assets/team/mridungam player.png';
+import teacher3 from '../assets/team/singsong.jpeg';
 
 const teamMembers = [
   {
-    name: "சங்கர் மாஸ்டர்",
+    name: "கல்யாண்சரண் மாஸ்டர்",
     role: "இசை ஆசிரியர்",
     instrument: "வீணை",
     bio: "30 ஆண்டுகள் அனுபவம். பல மாணவர்களை சிறந்த கலைஞர்களாக உருவாக்கியவர்.",
     image: teacher1,
   },
   {
-    name: "கல்பனா ராஜ்",
+    name: "கல்யாண்சரண்",
     role: "பாட்டு ஆசிரியை",
     instrument: "கர்நாடக வோகல்",
     bio: "15 ஆண்டுகள் கற்பித்தல் அனுபவம். பல விருதுகள் பெற்றவர்.",
     image: teacher2,
   },
   {
-    name: "ராகவன் கே",
+    name: "கல்யாண்சரண்",
     role: "இசை ஆசிரியர்",
     instrument: "மிருதங்கம்",
     bio: "20 ஆண்டுகள் அனுபவம். பாரம்பரிய முறையில் கற்பிப்பவர்.",

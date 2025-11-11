@@ -4,15 +4,15 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../assets/Core-Apps Associations.json"; // Your Lottie JSON file
 
 // Import your images
-import mirudangamImg from "../assets/events/mridungamshow.png";
+import mirudangamImg from "../assets/events/kacheri.jpeg";
 import veenaImg from "../assets/events/veenashow.png";
 import sangeethamImg from "../assets/events/sethupathishow.png";
 
 const events = [
   {
     id: 1,
-    title: "மிருதங்கக் கச்சேரி",
-    description: "அற்புதமான மிருதங்க இசை நிகழ்ச்சி.",
+    title: "கச்சேரி",
+    description: "அற்புதமான இசை நிகழ்ச்சி.",
     bgImage: mirudangamImg,
   },
   {
