@@ -4,9 +4,25 @@ import Lottie from "lottie-react";
 import FeatureCard from "./FeatureCard";
 import musicNotes from "../assets/music-notes.json";
 import voicemail from "../assets/Voicemail.json";
-import bgImage from "../assets/bg/music-bg.png"; // 🎵 Add your own background image
+import bgImage from "../assets/bg/music-bg.png"; // 🎵 Background image
+import "@fontsource/space-grotesk/700.css"; // Bold weight
+
 
 export default function Features() {
+  const features = [
+    {
+      icon: "🎓",
+      title: "அனுபவம் வாய்ந்த ஆசிரியர்கள்",
+      text: "பாரம்பரியம் மற்றும் நுட்பங்களை உடைய கலைஞர்கள் மூலம் பயிற்சி.",
+    },
+    {
+      icon: "🎛️",
+      title: "நேரலை & நேரடி வகுப்புகள்",
+      text: "நேரடி இடையூறு இல்லாமல் நேரலை வகுப்புகள் மற்றும் பதிவு செய்யப்பட்ட பாடங்கள்.",
+    },
+    // Add more features here if needed
+  ];
+
   return (
     <section
       className="relative overflow-hidden py-20 bg-gradient-to-br from-pink-50 via-white to-yellow-50"
@@ -35,11 +51,19 @@ export default function Features() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center mb-12 flex flex-col md:flex-row items-center justify-center gap-4"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 md:mb-0 drop-shadow-sm">
+          {/* Animated Gradient Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="text-5xl md:text-6xl font-extrabold mb-4 md:mb-0 text-center drop-shadow-xl font-space-grotesk
+                       bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500
+                       bg-clip-text text-transparent animate-gradient-x"
+          >
             🎶 எதைக் கற்பது?
-          </h2>
+          </motion.h2>
 
-          {/* Right-side Animation */}
+          {/* Right-side Lottie Animation */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -52,19 +76,7 @@ export default function Features() {
 
         {/* Feature Cards Section */}
         <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              icon: "🎓",
-              title: "அனுபவம் வாய்ந்த ஆசிரியர்கள்",
-              text: "பாரம்பரியம் மற்றும் நுட்பங்களை உடைய கலைஞர்கள் மூலம் பயிற்சி.",
-            },
-            {
-              icon: "🎛️",
-              title: "நேரலை & நேரடி வகுப்புகள்",
-              text: "நேரடி இடையூறு இல்லாமல் நேரலை வகுப்புகள் மற்றும் பதிவு செய்யப்பட்ட பாடங்கள்.",
-            },
-            
-          ].map((item, idx) => (
+          {features.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 40 }}

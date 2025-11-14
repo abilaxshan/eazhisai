@@ -1,28 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Tamil:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Force basic styles */
+/* ------------------------------
+   Global Font Setup
+-------------------------------*/
 :root {
   --primary-color: #0ea5a4;
 }
 
+/* Body font (Tamil + UI) */
 body {
   margin: 0;
   padding: 0;
   background-color: #f9fafb;
   color: #111827;
-  /* Use Poppins for Latin/English UI. Noto Sans Tamil will be used automatically for Tamil glyphs when needed. */
-  font-family: 'Poppins', 'Noto Sans Tamil', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+
+  /* Body uses Noto Tamil + Poppins fallbacks */
+  font-family: 'Noto Sans Tamil', 'Poppins', system-ui, sans-serif;
 }
 
+/* ------------------------------
+   Different fonts for headings
+-------------------------------*/
+
+/* Main Titles (Tamil stylish) */
+h1, h2 {
+  font-family: 'Catamaran', sans-serif;
+}
+
+/* Subheadings */
+h3, h4 {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-weight: 600;
+}
+
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 5s ease infinite;
+}
+
+
+
+
+
+/* Paragraphs */
+p, span, a, li {
+  font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+/* Optional: English-only elements */
+.english {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* React root */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
-/* Note: avoid @apply with custom color names to prevent PostCSS errors in some setups.
-	 Use Tailwind utility classes directly in components (e.g. "bg-primary text-white px-4 py-2 rounded"). */

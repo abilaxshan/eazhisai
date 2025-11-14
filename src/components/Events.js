@@ -50,16 +50,18 @@ export default function Events() {
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </motion.div>
+<motion.h2
+  className="text-4xl lg:text-5xl font-extrabold text-center leading-tight"
+  style={{ fontFamily: "'Roboto Slab', serif" }} // Elegant bold font
+  initial={{ opacity: 0, y: -20, scale: 0.95 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ duration: 1, ease: "easeInOut" }}
+>
+  நிகழ்வுகள்
+  <span className="text-2xl block text-blue-600 mt-2"></span>
+</motion.h2>
 
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-center leading-tight"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            நிகழ்வுகள்
-            <span className="text-2xl block text-blue-600 mt-2"></span>
-          </motion.h2>
+        
         </div>
 
         {/* Events Grid */}
