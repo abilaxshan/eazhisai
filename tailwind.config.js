@@ -9,7 +9,8 @@ module.exports = {
         highlight: '#FBBF24',
       },
       fontFamily: {
-        sans: ['"Noto Sans Tamil"', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Noto Sans', 'sans-serif'],
+        // Primary: Poppins for English/Latin UI; fallback to Noto Sans Tamil for Tamil glyphs
+        sans: ['Poppins', '"Noto Sans Tamil"', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Noto Sans', 'sans-serif'],
       },
     },
   },
