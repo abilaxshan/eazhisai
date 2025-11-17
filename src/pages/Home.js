@@ -9,7 +9,7 @@ export default function Home(){
   return (
     <main className="flex-grow">
       <Hero />
-      <div className="container mx-auto px-4 py-8">
+      <div className="section-stack container mx-auto px-4">
         <Features />
         <div className="mt-6">
           <Courses />

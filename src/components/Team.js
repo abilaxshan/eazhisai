@@ -1,36 +1,22 @@
-import React from 'react';
+import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-import TeamCard from './TeamCard';
-import teacher1 from '../assets/team/whitekalyan.jpeg';
-import teacher2 from '../assets/team/teacher playing violin.png';
-import teacher3 from '../assets/team/singsong.jpeg';
+import TeamCard from "./TeamCard";
+import teacher1 from "../assets/team/whitekalyan.jpeg";
+import teacher2 from "../assets/team/teacher playing violin.png";
+import teacher3 from "../assets/team/singsong.jpeg";
 
-const teamMembers = [
-  {
-    name: "கல்யாண்சரண் மாஸ்டர்",
-    role: "இசை ஆசிரியர்",
-    instrument: "வீணை",
-    bio: "30 ஆண்டுகள் அனுபவம். பல மாணவர்களை சிறந்த கலைஞர்களாக உருவாக்கியவர்.",
-    image: teacher1,
-  },
-  {
-    name: "கல்யாண்சரண்",
-    role: "பாட்டு ஆசிரியை",
-    instrument: "கர்நாடக வோகல்",
-    bio: "15 ஆண்டுகள் கற்பித்தல் அனுபவம். பல விருதுகள் பெற்றவர்.",
-    image: teacher2,
-  },
-  {
-    name: "கல்யாண்சரண்",
-    role: "இசை ஆசிரியர்",
-    instrument: "மிருதங்கம்",
-    bio: "20 ஆண்டுகள் அனுபவம். பாரம்பரிய முறையில் கற்பிப்பவர்.",
-    image: teacher3,
-  },
-];
+const teamImages = [teacher1, teacher2, teacher3];
 
 export default function Team() {
+  const { t } = useTranslation();
+  const teamMembers =
+    t("team.members", { returnObjects: true })?.map((member, index) => ({
+      image: teamImages[index] || teacher1,
+      ...member,
+    })) || [];
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -43,7 +29,7 @@ export default function Team() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            எங்கள் குழு 🎶
+            {t("team.heading")}
           </motion.h1>
           <motion.p
             className="text-gray-600"
@@ -51,9 +37,7 @@ export default function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            கர்நாடக இசையின் பாரம்பரியத்தையும், அதன் அழகிய நுணுக்கங்களையும் உலகளவில் 
-            பரப்ப விழைகின்றோம். அனுபவம் வாய்ந்த கலைஞர்கள் மற்றும் ஆசிரியர்கள் இணைந்து, 
-            மாணவர்களுக்கு சிறந்த இசைக் கல்வியையும், மேடை அனுபவத்தையும் வழங்குகிறோம்.
+            {t("team.description")}
           </motion.p>
         </div>
 

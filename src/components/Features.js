@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react";
 import FeatureCard from "./FeatureCard";
 import musicNotes from "../assets/music-notes.json";
@@ -7,21 +8,14 @@ import voicemail from "../assets/Voicemail.json";
 import bgImage from "../assets/bg/music-bg.png"; // 🎵 Background image
 import "@fontsource/space-grotesk/700.css"; // Bold weight
 
-
 export default function Features() {
-  const features = [
-    {
-      icon: "🎓",
-      title: "அனுபவம் வாய்ந்த ஆசிரியர்கள்",
-      text: "பாரம்பரியம் மற்றும் நுட்பங்களை உடைய கலைஞர்கள் மூலம் பயிற்சி.",
-    },
-    {
-      icon: "🎛️",
-      title: "நேரலை & நேரடி வகுப்புகள்",
-      text: "நேரடி இடையூறு இல்லாமல் நேரலை வகுப்புகள் மற்றும் பதிவு செய்யப்பட்ட பாடங்கள்.",
-    },
-    // Add more features here if needed
-  ];
+  const { t } = useTranslation();
+  const featureContent = t("features.items", { returnObjects: true }) || [];
+  const featureIcons = ["🎓", "🎛️"];
+  const features = featureContent.map((item, idx) => ({
+    icon: featureIcons[idx] || "🎵",
+    ...item,
+  }));
 
   return (
     <section
@@ -60,7 +54,7 @@ export default function Features() {
                        bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500
                        bg-clip-text text-transparent animate-gradient-x"
           >
-            🎶 எதைக் கற்பது?
+            {t("features.heading")}
           </motion.h2>
 
           {/* Right-side Lottie Animation */}

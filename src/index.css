@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,32 +9,60 @@
 -------------------------------*/
 :root {
   --primary-color: #0ea5a4;
+  --accent-color: #fbbf24;
+  --surface-dark: #0f172a;
+  --section-padding: clamp(4rem, 8vw, 7rem);
+  --nav-offset-mobile: 110px;
+  --nav-offset-desktop: 140px;
+  --radius-pill: 999px;
+  --radius-card: 24px;
+  --shadow-soft: 0 25px 50px -12px rgba(15, 23, 42, 0.4);
+  --font-display: 'Space Grotesk', 'Catamaran', 'Poppins', 'Noto Sans Tamil', sans-serif;
+  --font-body: 'Noto Sans Tamil', 'Poppins', system-ui, sans-serif;
+  --gradient-sunrise: linear-gradient(120deg, rgba(14,165,164,0.9), rgba(99,102,241,0.85));
 }
 
 /* Body font (Tamil + UI) */
 body {
   margin: 0;
   padding: 0;
-  background-color: #f9fafb;
+  background-color: #eef2ff;
   color: #111827;
-
-  /* Body uses Noto Tamil + Poppins fallbacks */
-  font-family: 'Noto Sans Tamil', 'Poppins', system-ui, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(14, 165, 164, 0.08), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.09), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(248, 113, 113, 0.08), transparent 35%);
 }
 
 /* ------------------------------
    Different fonts for headings
 -------------------------------*/
 
-/* Main Titles (Tamil stylish) */
-h1, h2 {
-  font-family: 'Catamaran', sans-serif;
+/* Headings share the display font */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -.02em;
 }
 
-/* Subheadings */
-h3, h4 {
-  font-family: 'Noto Sans Tamil', sans-serif;
-  font-weight: 600;
+h1 {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+}
+
+h4 {
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
 }
 
 @keyframes gradient-x {
@@ -52,7 +82,8 @@ h3, h4 {
 
 /* Paragraphs */
 p, span, a, li {
-  font-family: 'Noto Sans Tamil', sans-serif;
+  font-family: var(--font-body);
+  font-size: 1rem;
 }
 
 /* Optional: English-only elements */
@@ -65,4 +96,89 @@ p, span, a, li {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.app-shell__main {
+  flex: 1;
+  padding-top: var(--nav-offset-mobile);
+}
+
+@media (min-width: 768px) {
+  .app-shell__main {
+    padding-top: var(--nav-offset-desktop);
+  }
+}
+
+.section-stack {
+  padding-block: var(--section-padding);
+}
+
+.hero-display {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 12vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(20px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  background-image: var(--gradient-sunrise);
+  color: #f8fafc;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+  box-shadow: 0 15px 35px rgba(14, 165, 164, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.45);
+  outline-offset: 3px;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #f8fafc;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.btn-outline:hover {
+  background: rgba(15, 23, 42, 0.35);
+  transform: translateY(-1px);
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #cbd5f5;
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+  transform: translateX(4px);
 }

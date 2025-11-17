@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   motion,
   useAnimation,
@@ -6,25 +6,9 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import bgImage from "../assets/bg/paralelcourse.jpg"; // ensure correct path
-
-const coursesData = [
-  {
-    id: 1,
-    title: "வீணை பாடம்",
-    desc: "அடிப்படை முதல் மேம்பட்ட நிலை வரை வீணை இசை பயிற்சி.",
-  },
-  {
-    id: 2,
-    title: "மிருதங்கம் பாடம்",
-    desc: "தாளம், குரல் இணைப்பு மற்றும் நேர்த்தியான மிருதங்கம் பயிற்சி.",
-  },
-  {
-    id: 3,
-    title: "சங்கீதம் பாடம்",
-    desc: "கர்நாடக இசை, குரல் பயிற்சி மற்றும் பாடத்திட்டங்கள்.",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -51,6 +35,14 @@ export default function Courses() {
   const ref = useRef(null);
   const controls = useAnimation();
   const inView = useInView(ref, { threshold: 0.2 });
+  const { t } = useTranslation();
+  const coursesData =
+    t("coursesSection.items", { returnObjects: true })?.map(
+      (item, index) => ({
+        id: index + 1,
+        ...item,
+      })
+    ) || [];
 
   useEffect(() => {
     if (inView) controls.start("visible");
@@ -99,7 +91,7 @@ export default function Courses() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          படிப்புகள்
+          {t("coursesSection.heading")}
         </motion.h2>
 
         {/* 3 Glass-style Cards */}
@@ -116,9 +108,12 @@ export default function Courses() {
                 {course.desc}
               </p>
               <div className="text-right">
-                <button className="px-4 py-2 bg-blue-600/90 rounded-lg text-white hover:bg-blue-700 transition">
-                  மேலும் அறிக
-                </button>
+                <Link
+                  to="/apply"
+                  className="btn-primary text-sm px-6 py-2 justify-center"
+                >
+                  {t("apply")}
+                </Link>
               </div>
             </motion.article>
           ))}

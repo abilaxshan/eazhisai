@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "../assets/Core-Apps Associations.json"; // Your Lottie JSON file
 
@@ -8,28 +9,17 @@ import mirudangamImg from "../assets/events/kacheri.jpeg";
 import veenaImg from "../assets/events/veenashow.png";
 import sangeethamImg from "../assets/events/sethupathishow.png";
 
-const events = [
-  {
-    id: 1,
-    title: "கச்சேரி",
-    description: "அற்புதமான இசை நிகழ்ச்சி.",
-    bgImage: mirudangamImg,
-  },
-  {
-    id: 2,
-    title: "வீணைக் கச்சேரி",
-    description: "சங்கீத விருப்பங்களுக்கான வீணைக் கச்சேரி.",
-    bgImage: veenaImg,
-  },
-  {
-    id: 3,
-    title: "சேதுபதி இசை நிகழ்ச்சி",
-    description: "நிகழ்ச்சியின் அழகான இசை நிகழ்ச்சி.",
-    bgImage: sangeethamImg,
-  },
-];
+const eventImages = [mirudangamImg, veenaImg, sangeethamImg];
 
 export default function Events() {
+  const { t } = useTranslation();
+  const events =
+    t("eventsSection.items", { returnObjects: true })?.map((item, index) => ({
+      id: index + 1,
+      bgImage: eventImages[index] || mirudangamImg,
+      ...item,
+    })) || [];
+
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -50,16 +40,16 @@ export default function Events() {
               rendererSettings={{ preserveAspectRatio: "xMidYMid meet" }}
             />
           </motion.div>
-<motion.h2
-  className="text-4xl lg:text-5xl font-extrabold text-center leading-tight"
-  style={{ fontFamily: "'Roboto Slab', serif" }} // Elegant bold font
-  initial={{ opacity: 0, y: -20, scale: 0.95 }}
-  animate={{ opacity: 1, y: 0, scale: 1 }}
-  transition={{ duration: 1, ease: "easeInOut" }}
->
-  நிகழ்வுகள்
-  <span className="text-2xl block text-blue-600 mt-2"></span>
-</motion.h2>
+          <motion.h2
+            className="text-4xl lg:text-5xl font-extrabold text-center leading-tight"
+            style={{ fontFamily: "'Roboto Slab', serif" }} // Elegant bold font
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
+            {t("eventsSection.heading")}
+            <span className="text-2xl block text-blue-600 mt-2"></span>
+          </motion.h2>
 
         
         </div>
